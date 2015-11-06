@@ -5,6 +5,8 @@ development: &default
   host: localhost
   min_messages: warning
   pool: 2
+  username: administrate
+  password: administrate
   timeout: 5000
 
 test:

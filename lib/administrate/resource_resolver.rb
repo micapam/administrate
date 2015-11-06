@@ -2,8 +2,10 @@ require "administrate/namespace"
 
 module Administrate
   class ResourceResolver
-    def initialize(controller_path)
+    def initialize(controller_path, namespace_part = nil)
+      puts controller_path
       @controller_path = controller_path
+      @namespace_part = namespace_part
     end
 
     def dashboard_class
@@ -25,7 +27,9 @@ module Administrate
     private
 
     def resource_class_name
-      model_path_parts.join("::")
+      rcn = model_path_parts.join("::")
+      rcn = "#{namespace_part}::#{rcn}" unless namespace_part.nil?
+      rcn
     end
 
     def model_path_parts
@@ -37,5 +41,6 @@ module Administrate
     end
 
     attr_reader :controller_path
+    attr_reader :namespace_part
   end
 end
