@@ -1,14 +1,6 @@
 module Administrate
   class ApplicationController < ActionController::Base
 
-    def namespace_part
-      nil
-    end
-
-    def object_path
-      controller_path
-    end
-
     def index
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
@@ -118,7 +110,7 @@ module Administrate
 
     def resource_resolver
       @_resource_resolver ||=
-        Administrate::ResourceResolver.new(object_path, namespace_part)
+        Administrate::ResourceResolver.new(controller_path)
     end
 
     def translate_with_resource(key)
