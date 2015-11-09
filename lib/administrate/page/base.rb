@@ -11,6 +11,10 @@ module Administrate
           dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.gsub('::','').underscore
       end
 
+      def resource_classname
+        @resource_classname ||= dashboard.class.to_s.scan(/(.+)Dashboard/).first.first
+      end
+
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)
