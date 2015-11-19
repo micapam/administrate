@@ -19,6 +19,17 @@ describe "order form" do
     )
   end
 
+  describe "belongs_to relationships" do
+    it "has stored value selected" do
+      create(:customer)
+      order = create(:order)
+
+      visit edit_admin_order_path(order)
+      expected = order.customer.id.to_s
+      expect(find_field("Customer").value).to eq expected
+    end
+  end
+
   describe "has_many relationships" do
     it "can select multiple options" do
       order = create(:order)
@@ -50,23 +61,23 @@ describe "order form" do
       )
     end
 
+    it "has stored values selected" do
+      order = create(:order)
+      create_list(:line_item, 3, order: order)
+
+      visit edit_admin_order_path(order)
+
+      expected = order.line_items.pluck(:id).map(&:to_s)
+      expect(find("#order_line_item_ids").value).to eq expected
+    end
+
     def find_option(associated_model, field_id)
       field = find("#order_" + field_id)
-      field.find("option", text: associated_model.to_s)
+      field.find("option", text: displayed(associated_model))
     end
   end
 
   describe "datetime field" do
-    pending "correctly parses dates" do
-      order = create(:order)
-
-      visit edit_admin_order_path(order)
-      fill_in("Shipped at", with: "09/03/2015 7:18 AM")
-      click_on "Update Order"
-
-      expect(page).to have_content("Thu, Sep 3, 2015 at 07:18:00 AM")
-    end
-
     it "responds to the date/time picker date format", :js do
       order = create(:order)
 
@@ -75,6 +86,16 @@ describe "order form" do
       click_on "Update Order"
 
       expect(page).to have_content("Fri, Jan 2, 2015 at 03:04:05 AM")
+    end
+
+    it "populates and persists the existing value", :js do
+      time = Time.new(2015, 01, 02, 03, 04, 05)
+      order = create(:order, shipped_at: time)
+
+      visit edit_admin_order_path(order)
+      click_on "Update Order"
+
+      expect(order.reload.shipped_at).to eq(time)
     end
 
     def select_from_datepicker(time)

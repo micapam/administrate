@@ -10,24 +10,55 @@
 * `[BUGFIX]`: Fixes a bug with a non-breaking change.
 * `[COMPAT]`: Compatibility improvements - changes to make Administrate more
   compatible with different dependency versions.
+* `[I18n]`: Internationalization. Changes to translations or localizations.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
 
 ## Changes
 
 ### Upcoming Release
 
-* [#142] [FEATURE] Translation: Brazilian Portuguese
-* [#171] [FEATURE] Translation: Polish
-* [#153] [FEATURE] Translation: Russian
+* [#251] [FEATURE] Raise a helpful error when an attribute is missing from
+  `ATTRIBUTE_TYPES`
+* [#248] [BUGFIX] Improve polymorphic relationship's dashboard class detection.
+* [#247] [BUGFIX] Populate `has_many` and `belongs_to` select boxes
+  with the current value of the relationship.
+* [#217] [I18n] Dutch
+* [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
+
+### 0.1.1 (November 12, 2015)
+
+* [#191] [CHANGE] Improve API for specifying how resources are displayed
+  across the dashboard.
+  * Models are now displayed with a sensible default - (e.g. "User #2")
+  * Users can define `ModelDashboard#display_resource(resource)` for custom
+    display behavior
+  * Users who have generated views for the following field types
+    may need to update them to take advantage of the new API:
+    * HasOne
+    * HasMany
+    * Polymorphic
+    * BelongsTo
+* [#126] [UI] Preserve whitespace when rendering text fields
+* [#194] [BUGFIX] Don't clear out datetime values in form fields
+* [#193] [BUGFIX] Don't assume that unrecognized db column types are searchable
+* [#124] [BUGFIX] Better detection of application models
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
-* [COMPAT] Update repository structure so Bundler can pull the gem from github.
+* [#174] [COMPAT] Make several missing dependencies explicit.
+* [#144] [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
-* [COMPAT] Use ANSI SQL standards for case-insensitive search
-* [DOC] Add Rubygems version badge to README
-* [DOC] Add CircleCI badge to README
-* [DOC] Add CodeClimate badge to README
-* [UI] Preserve whitespace when rendering text fields
-* [#154] [FEATURE] Add Spanish translation for i18n
+* [#166] [COMPAT] Use ANSI SQL standards for case-insensitive search
+* [#223] [I18n] Vietnamese
+* [#161] [I18n] Mandarin Chinese
+* [#196] [I18n] Taiwanese Mandarin
+* [#142] [I18n] Brazilian Portuguese
+* [#171] [I18n] Polish
+* [#153] [I18n] Russian
+* [#148] [I18n] French
+* [#147] [I18n] German
+* [#154] [I18n] Spanish
+* [#120] [DOC] Add Rubygems version badge to README
+* [#165] [DOC] Add CircleCI badge to README
+* [#119] [DOC] Add CodeClimate badge to README
 
 ### 0.1.0 (October 30, 2015)
 
