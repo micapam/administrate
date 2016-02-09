@@ -32,5 +32,13 @@ module Administrate
         content_tag :use, nil, svg_attributes
       end
     end
+
+    def collection_partial_path(field)
+      if File.exist?("#{field.resources[0].class.to_s.underscore}/collection")
+        "#{field.resources[0].class.to_s.underscore}/collection"
+      else
+        'administrate/application/collection'
+      end
+    end
   end
 end

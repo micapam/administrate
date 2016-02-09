@@ -9,6 +9,7 @@ as defined by the DashboardManifest.
 
 <ul class="sidebar__list">
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
+    <% resource = resource.to_s.gsub('/','_') %>
     <li>
       <%= link_to(
         display_resource_name(resource),

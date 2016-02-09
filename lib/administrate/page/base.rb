@@ -8,7 +8,11 @@ module Administrate
 
       def resource_name
         @resource_name ||=
-          dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
+          dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.gsub('::','').underscore
+      end
+
+      def resource_classname
+        @resource_classname ||= dashboard.class.to_s.scan(/(.+)Dashboard/).first.first
       end
 
       protected

@@ -7,6 +7,7 @@ require "administrate/fields/has_one"
 require "administrate/fields/image"
 require "administrate/fields/number"
 require "administrate/fields/polymorphic"
+require "administrate/fields/nolink_polymorphic"
 require "administrate/fields/string"
 require "administrate/fields/text"
 
