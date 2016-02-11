@@ -14,7 +14,9 @@ module Administrate
         human(
           count: 0,
           default: resource_name.to_s.pluralize.titleize,
-        )
+        ).
+        split('/').
+        last
     end
 
     def svg_tag(asset, svg_id, options = {})

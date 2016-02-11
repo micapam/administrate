@@ -17,7 +17,7 @@ module Administrate
     end
 
     def resource_name
-      model_path_parts.map(&:underscore).join("__").to_sym
+      model_path_parts.map(&:underscore).join("_").to_sym
     end
 
     def resource_title

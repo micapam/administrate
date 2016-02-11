@@ -9,11 +9,10 @@ as defined by the DashboardManifest.
 
 <ul class="sidebar__list">
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
-    <% resource = resource.to_s.gsub('/','_') %>
     <li>
       <%= link_to(
         display_resource_name(resource),
-        [namespace, resource],
+        [namespace, resource.to_s.gsub('/', '_')],
         class: "sidebar__link sidebar__link--#{nav_link_state(resource)}"
       ) %>
     </li>
